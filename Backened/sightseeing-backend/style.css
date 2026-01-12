@@ -52,7 +52,6 @@ button {
 button:hover {
     background-color: #0056b3;
 }
-
 pre {
     background: #f0f0f0;
     padding: 10px;
@@ -61,3 +60,4 @@ pre {
     white-space: pre-wrap;
     word-wrap: break-word;
 }
+
