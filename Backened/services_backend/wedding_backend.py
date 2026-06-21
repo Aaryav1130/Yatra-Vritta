@@ -16,11 +16,26 @@ CORS(server)
 app = Dash(__name__, server=server, url_base_pathname='/wedding_dashboard/')
 
 # Load Model & Data
-model_path = os.path.join(os.path.dirname(__file__), 'models_wedding')
-if not os.path.exists(model_path):
-    os.makedirs(model_path)
+BASE_DIR = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "..")
+)
 
-df = pd.read_csv('destination_wedding_ranking.csv')
+model_path = os.path.join(
+    BASE_DIR,
+    "models",
+    "models",
+    "models_wedding"
+)
+
+csv_path = os.path.join(
+    BASE_DIR,
+    "models",
+    "dataset",
+    "score",
+    "destination_wedding_ranking.csv"
+)
+
+df = pd.read_csv(csv_path)
 
 # Handle missing values
 df = df.dropna(subset=['countrycode'])
