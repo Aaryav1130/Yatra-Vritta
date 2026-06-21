@@ -15,7 +15,15 @@ CORS(server)
 app = Dash(__name__, server=server, url_base_pathname='/dashboard/')
 
 # Load artifacts
-model_path = os.path.join(os.path.dirname(__file__), 'models')
+BASE_DIR = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "..")
+)
+model_path = os.path.join(
+    BASE_DIR,
+    "models",
+    "models",
+    "models_medical"
+)
 model = joblib.load(os.path.join(model_path, 'medical_tourism_model.pkl'))
 scaler = joblib.load(os.path.join(model_path, 'scaler.pkl'))
 df = pd.read_pickle(os.path.join(model_path, 'cities_df.pkl'))
