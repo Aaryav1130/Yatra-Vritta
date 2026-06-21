@@ -10,10 +10,28 @@ server = Flask(__name__)
 CORS(server)
 
 # Load artifacts
-model_path = os.path.join(os.path.dirname(__file__), 'models_mice')
-model = joblib.load(os.path.join(model_path, 'city_ranking_model.pkl'))
-scaler = joblib.load(os.path.join(model_path, 'scaler.pkl'))
-df = pd.read_pickle(os.path.join(model_path, 'cities_df.pkl'))
+BASE_DIR = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "..")
+)
+
+model_path = os.path.join(
+    BASE_DIR,
+    "models",
+    "models",
+    "models_mice"
+)
+
+model = joblib.load(
+    os.path.join(model_path, 'city_ranking_model.pkl')
+)
+
+scaler = joblib.load(
+    os.path.join(model_path, 'scaler.pkl')
+)
+
+df = pd.read_pickle(
+    os.path.join(model_path, 'cities_df.pkl')
+)
 
 # Updated features list
 features = [
