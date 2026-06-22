@@ -11,30 +11,28 @@ CORS(app)
 
 @app.route('/chat', methods=['POST'])
 def chat():
-    user_message = request.json.get("message")
-    
-    if not user_message:
-        return jsonify({"response": "Please enter a message."})
+    user_message = request.json.get("message", "").lower()
 
     if "medical" in user_message or "tourism" in user_message:
-        response = eliza_chat() 
-    
-    elif "MICE" in user_message or "conference" in user_message:
-        response = suntsu_chat()  
+        response = "Medical tourism helps patients travel abroad for quality healthcare at affordable costs."
+
+    elif "mice" in user_message or "conference" in user_message:
+        response = "MICE stands for Meetings, Incentives, Conferences and Exhibitions."
 
     elif "wedding" in user_message or "marriage" in user_message:
-        response = iesha_chat()  
+        response = "Destination weddings allow couples to celebrate their marriage in attractive travel destinations."
 
-    elif "angry" in user_message or "bad service" in user_message:
-        response = rude_chat() 
-
-    elif "philosophy" in user_message or "business vision" in user_message:
-        response = zen_chat()  
+    elif "business" in user_message:
+        response = "Business tourism involves travel for professional meetings and corporate events."
 
     else:
-        response = "I'm not sure how to respond. Can you clarify your question?"
+        response = "I can answer questions about Medical Tourism, MICE and Destination Weddings."
 
     return jsonify({"response": response})
 
-if __name__ == '_main_':
+@app.route('/test')
+def test():
+    return jsonify({"status": "working"})
+    
+if __name__ == '__main__':
     app.run(debug=True)
