@@ -72,6 +72,8 @@ if selected_country and selected_city and analyze_btn:
         data = get_recommendations(selected_country, selected_city)
 
     if data:
+        st.write("Backend Response:")
+        st.json(data)
         st.header(f"🏆 Wedding Destination Score: **{data['selected']['Destination Wedding Score']:.2f}**")
 
         # Metrics Section
